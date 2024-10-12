@@ -1,6 +1,3 @@
-
-
-
 import os
 import xml.etree.ElementTree as ET
 import glob
@@ -9,21 +6,10 @@ import glob
 rml_directory = '/Users/ybys/Desktop/TP/PSG_Audio/APNEA_RMC'
 
 
-# Note: I completely missed load more option before,
-#       here the new code is slightly modified
-
-'''
-# List of RML files to process
-rml_files = [
-    '00000995-100507.rml', '00000999-100507.rml', '00001000-100507.rml',
-    '00001006-100507.rml', '00001008-100507.rml', '00001010-100507.rml',
-    '00001014-100507.rml', '00001016-100507.rml'
-]
-'''
 # Use glob to find all RML files in the directory
 rml_files = glob.glob(os.path.join(rml_directory, '*.rml'))
 
-# Define the namespace (if applicable)
+# Define the namespace
 ns = {'ns': 'http://www.respironics.com/PatientStudy.xsd'}
 
 # Process each RML file
