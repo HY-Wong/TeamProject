@@ -1,54 +1,64 @@
-import mne
 import os
-import glob
+import numpy as np
+import pyedflib
 
-def extract_channels(input_file_path, output_file_path):
-    """
-    Extract 'Snore', 'Tracheal', and 'Mic' from an EDF file and save it to a new FIF file.
-    
-    Parameters:
-    - input_file_path: str, path to the input EDF file
-    - output_file_path: str, path to the output FIF file
-    """
-    # Just load the EDF file with preload=False to minimize memory usage
-    raw = mne.io.read_raw_edf(input_file_path, preload=False)
-    
-    # Select 'Mic' channel only
-    raw = raw.pick_channels(['Snore', 'Tracheal', 'Mic'])
-    
-    # Save to a new FIF file
-    raw.save(output_file_path, overwrite=True)
-    
-    print(f"Selected channels saved to {output_file_path}")  
+# Define your data directory
+data_dir = '/Users/ybys/Desktop/TP/PSG_Audio/APNEA_EDF'
 
-    
-def process_patient_data(base_directory):
-    """
-    Process all EDF files in the base directory, extracting channel 'Snore', 'Tracheal', and 'Mic'.
-    
-    Parameters:
-    - base_directory: str, path to the base directory containing the patient folders
-    """
-    # Get all EDF files in the base directory (and subdirectories)
-    edf_files = glob.glob(os.path.join(base_directory, '**', '*.edf'), recursive=True)
-    
-    for edf_file in edf_files:
-        # Extract patient ID from the filename, the ID is in positions 6-10
-        # For example, file name '00001016-100507[001].edf'
-        file_name = os.path.basename(edf_file)
-        patient_id = file_name[4:8]
+# Dictionary to store concatenated data for 'Mic' and 'Tracheal' channels for each patient
+concatenated_data = {}
 
-         # Output file name: replace edf with fif
-        output_file_path = os.path.join(base_directory, patient_id, file_name.replace('.edf', '.fif'))
+# Traverse all patient folders and EDF files
+for patient_folder in os.listdir(data_dir):
+    patient_path = os.path.join(data_dir, patient_folder)
+    
+    if not os.path.isdir(patient_path):
+        continue
+    
+    concatenated_mic_signal = []
+    concatenated_tracheal_signal = []
+    sample_rate_mic = 0
+    sample_rate_tracheal = 0
+
+    for file_name in sorted(os.listdir(patient_path)):
+        if file_name.endswith('.edf'):
+            edf_path = os.path.join(patient_path, file_name)
+            edf_file = pyedflib.EdfReader(edf_path)
+
+            signal_labels = edf_file.getSignalLabels()
+
+            # Check for 'Mic' and 'Tracheal' channels
+            if 'Mic' in signal_labels:
+                mic_index = signal_labels.index('Mic')
+                mic_data = edf_file.readSignal(mic_index)
+                concatenated_mic_signal.append(mic_data)
+                sample_rate_mic = edf_file.getSampleFrequency(mic_index)
+            else:
+                print(f"'Mic' channel not found in {edf_path}. Skipping.")
+
+            if 'Tracheal' in signal_labels:
+                tracheal_index = signal_labels.index('Tracheal')
+                tracheal_data = edf_file.readSignal(tracheal_index)
+                concatenated_tracheal_signal.append(tracheal_data)
+                sample_rate_tracheal = edf_file.getSampleFrequency(tracheal_index)
+            else:
+                print(f"'Tracheal' channel not found in {edf_path}. Skipping.")
+
+            edf_file.close()
+
+    # Concatenate all segments and store if both channels are found
+    if concatenated_mic_signal and concatenated_tracheal_signal:
+        full_mic_signal = np.concatenate(concatenated_mic_signal)
+        full_tracheal_signal = np.concatenate(concatenated_tracheal_signal)
+
+        # Store both channels in a dictionary and save in a single .npy file
+        concatenated_data = {
+            'Mic': {'data': full_mic_signal, 'sample_rate': sample_rate_mic},
+            'Tracheal': {'data': full_tracheal_signal, 'sample_rate': sample_rate_tracheal}
+        }
         
-        # Check if the output directory exists, create if not
-        os.makedirs(os.path.dirname(output_file_path), exist_ok=True)
+        # Save the concatenated data dictionary to a single .npy file
+        output_file_path = os.path.join(data_dir, f"{patient_folder}_mic_tracheal.npy")
+        np.save(output_file_path, concatenated_data)
         
-        # Extract and save the 'Mic' channel
-        extract_channels(edf_file, output_file_path)
-
-# Base directory where all the patient data is stored
-base_directory = '/Users/ybys/Desktop/TP/PSG_Audio/APNEA_EDF'
-
-# Process data for all patients
-process_patient_data(base_directory)
+        print(f'Saved concatenated Mic and Tracheal data for {patient_folder} to {output_file_path}')
