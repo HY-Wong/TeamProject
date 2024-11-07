@@ -1,111 +1,107 @@
-import mne
 import numpy as np
 import os
 import glob
-import pandas as pd  # For statistics summary
+import pandas as pd
+from scipy.io import wavfile  # For reading and writing .wav files
 
-def summarize_statistics(channel_data, step_name, acq_id):
-    # Calculate basic statistics for the channel
-    stats = {
-        'Acq_id': acq_id,
-        'Step': step_name,
-        'Mean Amplitude': np.mean(channel_data),
-        'STD': np.std(channel_data),
-        'Min Amplitude': np.min(channel_data),
-        'Max Amplitude': np.max(channel_data),
-        'Non-Zero Count': np.count_nonzero(channel_data),
-        'Zero Count': np.sum(channel_data == 0),
-        'Missing Data Percentage': np.sum(channel_data == 0) / len(channel_data) * 100
-    }
-    return stats
-
-def clean_data(fif_path):
-    
-    # Extract 'Acq_id' from the file path
-    acq_id = os.path.basename(fif_path).replace('.fif', '')
-
-    # Skip processing if already cleaned
-    if fif_path.endswith('_cleaned.fif'):
-        print(f"File {fif_path} is already cleaned. Skipping...")
+def summarize_statistics(channel_data, step_name, acq_id, channel_name):
+    if isinstance(channel_data, np.ndarray) and len(channel_data) > 0:
+        stats = {
+            'Acq_id': acq_id,
+            'Step': step_name,
+            'Channel': channel_name,
+            'Mean Amplitude': np.mean(channel_data),
+            'STD': np.std(channel_data),
+            'Min Amplitude': np.min(channel_data),
+            'Max Amplitude': np.max(channel_data),
+            'Non-Zero Count': np.count_nonzero(channel_data),
+            'Zero Count': np.sum(channel_data == 0),
+            'Missing Data Percentage': np.sum(channel_data == 0) / len(channel_data) * 100
+        }
+        return stats
+    else:
+        print(f"Warning: Channel data for {step_name} is not valid. Data: {channel_data}")
         return None
 
-    # Load the filtered FIF file with preload=False
-    raw = mne.io.read_raw_fif(fif_path, preload=False)
+def clean_channel_data(wav_file, channel_name):
+    # Extract 'Acq_id' from the file path
+    acq_id = os.path.basename(wav_file).split('_')[0]
 
-    # Define channels to clean
-    channels_to_clean = ['Snore', 'Tracheal', 'Mic']
+    # Load the .wav file
+    sample_rate, signal = wavfile.read(wav_file)
     
-    # Initialize statistics storage
-    summary_stats = []
+    # Ensure the signal is in float format for processing
+    if signal.dtype != np.float32:
+        signal = signal.astype(np.float32)
 
-    # Initialize a list to hold cleaned data
-    cleaned_data = raw.get_data()  # Get the original data as a numpy array
+    original_stats = summarize_statistics(signal, 'Original', acq_id, channel_name)
+    if original_stats is None:
+        return None  # Skip if original stats are invalid
 
-    for channel in channels_to_clean:
-        mic_signal = cleaned_data[raw.ch_names.index(channel), :]  # Load the channel data
-        
-        
-        original_stats = summarize_statistics(mic_signal, f'Original {channel}', acq_id)
-        summary_stats.append(original_stats)
+    # 1. Set an amplitude threshold to identify and remove artifacts
+    amplitude_threshold = np.std(signal) * 5
+    cleaned_signal = np.where(np.abs(signal) > amplitude_threshold, 0, signal)
 
-        # 1. Set an amplitude threshold to identify and remove artifacts
-        amplitude_threshold = np.std(mic_signal) * 5
-        cleaned_signal = np.where(np.abs(mic_signal) > amplitude_threshold, 0, mic_signal)
+    # Artifact Removal Stats
+    artifact_removed_stats = summarize_statistics(cleaned_signal, 'Artifact Removed', acq_id, channel_name)
+    
+    if artifact_removed_stats is None:
+        return None  # Skip if artifact stats are invalid
 
-        #    Artifact Removal Stats
-        artifact_removed_stats = summarize_statistics(cleaned_signal, f'Artifact Removed {channel}', acq_id)
-        summary_stats.append(artifact_removed_stats)
+    # 2. Detect missing data (e.g., complete zero segments)
+    missing_data_indices = np.where(cleaned_signal == 0)[0]
 
-        # 2. Detect missing data (e.g., complete zero segments)
-        missing_data_indices = np.where(cleaned_signal == 0)[0]
+    # Initialize cleaned_signal_interpolated
+    cleaned_signal_interpolated = cleaned_signal.copy()
 
-        #    Initialize cleaned_signal_interpolated
-        cleaned_signal_interpolated = cleaned_signal.copy()
+    # Only interpolate if there are valid non-zero points in the signal
+    non_zero_indices = np.nonzero(cleaned_signal)[0]
+    if len(missing_data_indices) > 0 and len(non_zero_indices) > 0:
+        cleaned_signal_interpolated[missing_data_indices] = np.interp(
+            missing_data_indices, non_zero_indices, cleaned_signal[non_zero_indices])
 
-        #    Only interpolate if there are valid non-zero points in the signal
-        non_zero_indices = np.nonzero(cleaned_signal)[0]
-        if len(missing_data_indices) > 0 and len(non_zero_indices) > 0:
-            cleaned_signal_interpolated[missing_data_indices] = np.interp(
-                missing_data_indices, non_zero_indices, cleaned_signal[non_zero_indices])
+    # Post Missing Data Interpolation Stats
+    interpolated_stats = summarize_statistics(cleaned_signal_interpolated, 'Interpolated', acq_id, channel_name)
+    
+    if interpolated_stats is None:
+        return None  # Skip if interpolation stats are invalid
 
-        #    Post Missing Data Interpolation Stats
-        interpolated_stats = summarize_statistics(cleaned_signal_interpolated, f'Interpolated {channel}', acq_id)
-        summary_stats.append(interpolated_stats)
+    # 3. Normalize the signal to the range [-1, 1]
+    cleaned_signal_normalized = cleaned_signal_interpolated / np.max(np.abs(cleaned_signal_interpolated))
+    normalization_stats = summarize_statistics(cleaned_signal_normalized, 'Normalized', acq_id, channel_name)
+    
+    if normalization_stats is None:
+        return None  # Skip if normalization stats are invalid
 
-        # 3. Normalize the signal to the range [-1, 1]
-        cleaned_signal_normalized = cleaned_signal_interpolated / np.max(np.abs(cleaned_signal_interpolated))
-        normalization_stats = summarize_statistics(cleaned_signal_normalized, f'Normalized {channel}', acq_id)
-        summary_stats.append(normalization_stats)
+    # Save the cleaned signal back to a new .wav file
+    cleaned_wav_path = wav_file.replace('.wav', '_cleaned.wav')
+    wavfile.write(cleaned_wav_path, sample_rate, cleaned_signal_normalized.astype(np.float32))
 
-        #    Update the cleaned data array
-        cleaned_data[raw.ch_names.index(channel), :] = cleaned_signal_normalized
+    print(f"Cleaned signals saved to: {cleaned_wav_path}")
 
-    # Create a new Info object to hold the metadata
-    cleaned_info = raw.info.copy()  # Copy the info from the original raw object
-
-    # Create a new Raw object with the cleaned data
-    cleaned_raw = mne.io.RawArray(cleaned_data, cleaned_info)
-
-    # Save the cleaned data to the new FIF file
-    cleaned_fif_path = fif_path.replace('.fif', '_cleaned.fif')
-    cleaned_raw.save(cleaned_fif_path, overwrite=True)
-
-    print(f"Cleaned signals saved to: {cleaned_fif_path}")
-
-    return summary_stats
+    return original_stats, artifact_removed_stats, interpolated_stats, normalization_stats
 
 # Define the base directory where patient folders are located
 base_directory = "/Users/ybys/Desktop/TP/PSG_Audio/APNEA_EDF"
 
-# Use glob to find all FIF files recursively in subdirectories
-fif_files = glob.glob(os.path.join(base_directory, '**', '*.fif'), recursive=True)
+# Use glob to find all .wav files recursively in subdirectories
+wav_files = glob.glob(os.path.join(base_directory, '**', '*.wav'), recursive=True)
 
 # Initialize a list to hold the summary of statistics for all files
 all_files_summary = []
 
-# Loop through each FIF file and clean the specified channels
-for fif_file in fif_files:
-    stats = clean_data(fif_file)
+# Process each .wav file and summarize statistics for both channels
+for wav_file in wav_files:
+    # Identify if the file is mic or tracheal based on file naming
+    if '_mic.wav' in wav_file:
+        channel_name = 'Mic'
+    elif '_tracheal.wav' in wav_file:
+        channel_name = 'Tracheal'
+    else:
+        continue  # Skip files that don't match the expected channel names
+
+    # Clean and summarize the data for the identified channel
+    stats = clean_channel_data(wav_file, channel_name)
     if stats is not None:
         all_files_summary.extend(stats)
 
