@@ -28,39 +28,48 @@ for file_name in os.listdir(data_dir):
             if patient_id in patient_mapping:
                 patient_mapping[patient_id].append(os.path.join(data_dir, file_name))
 
-# Concatenate signals for each patient
-for patient_id, edf_pathes in patient_mapping.items():
-    if patient_id != '00001241-100507':
-        continue
+channels = ['Mic', 'Snore', 'Tracheal']
 
-    concatenated_signal = []
-    sample_rate = 0
+for channel in channels:
+    # Concatenate signals for each patient
+    for patient_id, edf_pathes in patient_mapping.items():
+        if patient_id != '00001241-100507':
+            continue
+        
+        concatenated_signal = []
+        sample_rate = 0
 
-    edf_pathes.sort()
+        edf_pathes.sort()
 
-    for edf_path in edf_pathes:
-        edf_file = pyedflib.EdfReader(edf_path)
+        for edf_path in edf_pathes:
+            edf_file = pyedflib.EdfReader(edf_path)
 
-        signal_labels = edf_file.getSignalLabels()
-        signal_index = signal_labels.index('Mic')
-        signal_data = edf_file.readSignal(signal_index)
-        # print(len(signal_data))
-        concatenated_signal.append(signal_data)
+            signal_labels = edf_file.getSignalLabels()
+            signal_index = signal_labels.index(channel)
+            signal_data = edf_file.readSignal(signal_index)
+            # print(len(signal_data))
+            concatenated_signal.append(signal_data)
 
-        sample_rate = edf_file.getSampleFrequency(signal_index)
+            sample_rate = edf_file.getSampleFrequency(signal_index)
+            physical_min = edf_file.getPhysicalMinimum(signal_index)
+            physical_max = edf_file.getPhysicalMaximum(signal_index)
 
-        edf_file.close()
-    
-    # Concatenate all segments
-    full_signal = np.concatenate(concatenated_signal)
-    print(full_signal.shape)
-    
-    # Normalize the concatenated signal to the range of int16 for .wav
-    full_signal_normalized = np.clip(full_signal, -1.0, 1.0)
-    full_signal_normalized = (full_signal_normalized * 32767).astype(np.int16)
+            edf_file.close()
+        
+        # Concatenate all segments
+        print(f'Processing {patient_id} -  Channel {channel}')
+        full_signal = np.concatenate(concatenated_signal)
+        print(full_signal.shape)
 
-    # Save as a single .wav file
-    output_file_path = os.path.join(data_dir, f'{patient_id}.wav')
-    write(output_file_path, int(sample_rate), full_signal_normalized)
+        # Normalize the concatenated signal to the range of int16 for .wav
+        full_signal_normalized = (full_signal - physical_min) / (physical_max - physical_min) * 2 - 1
+        assert np.min(full_signal_normalized) >= -1.0
+        assert np.max(full_signal_normalized) <= 1.0
+        full_signal_normalized = np.clip(full_signal_normalized, -1.0, 1.0)
+        full_signal_normalized = (full_signal_normalized * 32767).astype(np.int16)
 
-    print(f'Saved concatenated .wav for patient {patient_id}')
+        # Save as a single .wav file
+        output_file_path = os.path.join(data_dir, f'{patient_id}_{channel.lower()}.wav')
+        write(output_file_path, int(sample_rate), full_signal_normalized)
+
+        print(f'Saved concatenated .wav for patient {patient_id}')
