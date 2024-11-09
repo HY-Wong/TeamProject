@@ -32,7 +32,10 @@ channels = ['Mic', 'Snore', 'Tracheal']
 
 for channel in channels:
     # Concatenate signals for each patient
-    for patient_id, edf_pathes in patient_mapping.items():       
+    for patient_id, edf_pathes in patient_mapping.items():
+        if patient_id == '00001339-100507':
+            continue
+
         concatenated_signal = []
         sample_rate = 0
 
