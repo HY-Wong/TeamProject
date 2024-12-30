@@ -1,0 +1,1132 @@
+[
+    {
+        "type": "ObstructiveApnea",
+        "start": 633.5,
+        "duration": 15.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 672.0,
+        "duration": 10.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 720.5,
+        "duration": 11.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 1815.0,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 1838.0,
+        "duration": 12.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 1875.0,
+        "duration": 13.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 1899.5,
+        "duration": 11.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 2048.5,
+        "duration": 11.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 2079.5,
+        "duration": 10.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 2256.0,
+        "duration": 10.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 2279.5,
+        "duration": 13.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 2326.5,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 2353.5,
+        "duration": 10.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 2381.0,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 2481.5,
+        "duration": 14.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 2524.5,
+        "duration": 14.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 2549.5,
+        "duration": 10.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 2665.5,
+        "duration": 10.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 2687.0,
+        "duration": 10.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 2878.5,
+        "duration": 12.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 2949.0,
+        "duration": 12.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 3176.0,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 3201.0,
+        "duration": 10.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 3223.5,
+        "duration": 11.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 3249.5,
+        "duration": 12.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 3279.0,
+        "duration": 13.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 3309.0,
+        "duration": 15.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 3372.0,
+        "duration": 13.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 3486.5,
+        "duration": 10.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 3523.0,
+        "duration": 10.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 3578.0,
+        "duration": 10.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 3608.5,
+        "duration": 15.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 3643.5,
+        "duration": 11.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 3718.0,
+        "duration": 12.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 3752.0,
+        "duration": 11.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 3779.5,
+        "duration": 10.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 3803.0,
+        "duration": 11.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 3829.5,
+        "duration": 10.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 3996.0,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 4191.5,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 4214.0,
+        "duration": 11.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 4408.0,
+        "duration": 14.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 4447.0,
+        "duration": 12.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 4490.0,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 4522.0,
+        "duration": 13.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 4567.5,
+        "duration": 12.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 4595.0,
+        "duration": 11.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 4631.5,
+        "duration": 12.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 4658.5,
+        "duration": 11.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 4684.5,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 4715.5,
+        "duration": 12.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 4786.5,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 4821.5,
+        "duration": 11.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 4876.5,
+        "duration": 12.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 4920.0,
+        "duration": 11.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 5013.0,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 5304.0,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 5337.0,
+        "duration": 12.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 5397.0,
+        "duration": 12.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 5427.5,
+        "duration": 15.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 6071.0,
+        "duration": 10.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 6097.5,
+        "duration": 11.0
+    },
+    {
+        "type": "MixedApnea",
+        "start": 6301.5,
+        "duration": 13.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 6431.0,
+        "duration": 13.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 6456.5,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 6479.0,
+        "duration": 11.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 6504.0,
+        "duration": 11.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 6525.5,
+        "duration": 10.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 6549.0,
+        "duration": 10.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 6587.5,
+        "duration": 10.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 6623.5,
+        "duration": 14.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 6652.0,
+        "duration": 17.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 6759.5,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 6802.5,
+        "duration": 10.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 6822.0,
+        "duration": 14.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 6862.5,
+        "duration": 13.5
+    },
+    {
+        "type": "MixedApnea",
+        "start": 6903.0,
+        "duration": 13.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 6930.5,
+        "duration": 17.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 6972.5,
+        "duration": 11.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 6992.0,
+        "duration": 12.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 7058.5,
+        "duration": 11.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 7102.5,
+        "duration": 13.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 7138.0,
+        "duration": 13.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 7177.5,
+        "duration": 12.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 7245.0,
+        "duration": 10.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 7287.5,
+        "duration": 10.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 7306.0,
+        "duration": 12.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 7352.5,
+        "duration": 11.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 7391.5,
+        "duration": 13.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 7419.5,
+        "duration": 11.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 7643.0,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 7897.0,
+        "duration": 10.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 7941.5,
+        "duration": 10.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 7979.0,
+        "duration": 11.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 8064.5,
+        "duration": 10.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 8088.5,
+        "duration": 10.5
+    },
+    {
+        "type": "MixedApnea",
+        "start": 8474.0,
+        "duration": 10.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 8494.5,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 8517.5,
+        "duration": 13.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 8546.5,
+        "duration": 10.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 8573.5,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 8601.0,
+        "duration": 12.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 10468.5,
+        "duration": 12.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 10585.0,
+        "duration": 10.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 10613.5,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 11328.5,
+        "duration": 14.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 12450.0,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 12480.0,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 12508.0,
+        "duration": 12.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 12553.0,
+        "duration": 10.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 12577.5,
+        "duration": 10.0
+    },
+    {
+        "type": "CentralApnea",
+        "start": 12609.0,
+        "duration": 16.0
+    },
+    {
+        "type": "MixedApnea",
+        "start": 12636.0,
+        "duration": 13.5
+    },
+    {
+        "type": "CentralApnea",
+        "start": 12678.5,
+        "duration": 10.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 12705.5,
+        "duration": 12.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 12733.5,
+        "duration": 10.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 12753.0,
+        "duration": 10.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 12777.0,
+        "duration": 10.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 12797.5,
+        "duration": 10.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 12820.5,
+        "duration": 10.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 12837.5,
+        "duration": 11.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 12872.5,
+        "duration": 11.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 12896.5,
+        "duration": 11.0
+    },
+    {
+        "type": "CentralApnea",
+        "start": 12936.0,
+        "duration": 16.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 12964.0,
+        "duration": 10.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 13001.0,
+        "duration": 18.5
+    },
+    {
+        "type": "MixedApnea",
+        "start": 13047.5,
+        "duration": 12.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 13074.5,
+        "duration": 10.0
+    },
+    {
+        "type": "CentralApnea",
+        "start": 13103.0,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 13126.5,
+        "duration": 11.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 13151.5,
+        "duration": 12.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 13188.5,
+        "duration": 10.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 13211.5,
+        "duration": 12.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 13235.0,
+        "duration": 11.5
+    },
+    {
+        "type": "MixedApnea",
+        "start": 13291.5,
+        "duration": 16.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 13318.5,
+        "duration": 10.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 13336.5,
+        "duration": 10.5
+    },
+    {
+        "type": "CentralApnea",
+        "start": 13371.0,
+        "duration": 11.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 13419.5,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 13442.0,
+        "duration": 12.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 13469.5,
+        "duration": 11.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 13491.0,
+        "duration": 12.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 13514.5,
+        "duration": 10.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 13530.5,
+        "duration": 13.0
+    },
+    {
+        "type": "MixedApnea",
+        "start": 13554.0,
+        "duration": 13.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 13581.0,
+        "duration": 11.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 13606.0,
+        "duration": 10.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 13629.5,
+        "duration": 14.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 13663.5,
+        "duration": 13.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 13717.0,
+        "duration": 15.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 13749.0,
+        "duration": 12.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 13788.5,
+        "duration": 11.0
+    },
+    {
+        "type": "CentralApnea",
+        "start": 13846.5,
+        "duration": 11.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 13873.5,
+        "duration": 11.0
+    },
+    {
+        "type": "MixedApnea",
+        "start": 13916.0,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 14009.0,
+        "duration": 11.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 14088.0,
+        "duration": 10.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 14111.0,
+        "duration": 10.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 14133.5,
+        "duration": 11.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 14164.5,
+        "duration": 13.5
+    },
+    {
+        "type": "CentralApnea",
+        "start": 14190.5,
+        "duration": 10.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 14225.0,
+        "duration": 13.5
+    },
+    {
+        "type": "CentralApnea",
+        "start": 14250.5,
+        "duration": 11.0
+    },
+    {
+        "type": "CentralApnea",
+        "start": 14302.0,
+        "duration": 15.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 14328.5,
+        "duration": 11.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 14355.0,
+        "duration": 14.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 14380.0,
+        "duration": 11.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 14405.5,
+        "duration": 10.0
+    },
+    {
+        "type": "CentralApnea",
+        "start": 14435.0,
+        "duration": 11.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 14458.0,
+        "duration": 10.0
+    },
+    {
+        "type": "MixedApnea",
+        "start": 14484.0,
+        "duration": 18.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 14513.5,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 14557.5,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 14585.5,
+        "duration": 12.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 14618.5,
+        "duration": 15.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 14777.0,
+        "duration": 11.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 14882.0,
+        "duration": 15.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 14934.5,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 14980.0,
+        "duration": 11.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 15062.0,
+        "duration": 11.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 15210.0,
+        "duration": 10.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 15231.5,
+        "duration": 12.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 15256.0,
+        "duration": 10.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 15279.0,
+        "duration": 11.0
+    },
+    {
+        "type": "MixedApnea",
+        "start": 15307.5,
+        "duration": 11.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 15362.0,
+        "duration": 24.5
+    },
+    {
+        "type": "CentralApnea",
+        "start": 15401.0,
+        "duration": 10.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 15715.5,
+        "duration": 14.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 15851.0,
+        "duration": 16.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 15891.5,
+        "duration": 10.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 15973.0,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 15996.0,
+        "duration": 10.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 16064.0,
+        "duration": 13.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 16168.0,
+        "duration": 12.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 16196.0,
+        "duration": 10.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 16216.5,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 16238.5,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 16263.0,
+        "duration": 11.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 16309.5,
+        "duration": 12.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 16339.0,
+        "duration": 10.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 16359.0,
+        "duration": 11.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 16414.0,
+        "duration": 10.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 16436.5,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 16455.0,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 16481.0,
+        "duration": 12.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 16532.0,
+        "duration": 12.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 16569.5,
+        "duration": 12.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 16635.5,
+        "duration": 10.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 16656.5,
+        "duration": 10.5
+    },
+    {
+        "type": "MixedApnea",
+        "start": 16680.5,
+        "duration": 13.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 16768.5,
+        "duration": 12.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 16792.0,
+        "duration": 12.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 16870.0,
+        "duration": 11.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 16903.5,
+        "duration": 12.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 16930.0,
+        "duration": 12.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 16955.5,
+        "duration": 11.0
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 16976.5,
+        "duration": 10.5
+    },
+    {
+        "type": "ObstructiveApnea",
+        "start": 17001.0,
+        "duration": 12.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 17032.0,
+        "duration": 14.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 17060.0,
+        "duration": 20.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 17094.0,
+        "duration": 18.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 17127.5,
+        "duration": 15.0
+    },
+    {
+        "type": "Hypopnea",
+        "start": 17160.0,
+        "duration": 19.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 17205.0,
+        "duration": 18.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 17249.0,
+        "duration": 15.5
+    },
+    {
+        "type": "Hypopnea",
+        "start": 17426.5,
+        "duration": 14.5
+    }
+]
