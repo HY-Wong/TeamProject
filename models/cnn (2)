@@ -37,7 +37,7 @@ def parse_annotations(rml_file_path):
     return annotations
 
 # Function to extract statistical features from audio
-def extract_statistical_features(wav_file_path, annotations, sr=22050):
+def extract_statistical_features(wav_file_path, annotations, sr=8000):
     features, labels = [], []
     try:
         audio, _ = librosa.load(wav_file_path, sr=sr)
@@ -86,7 +86,7 @@ def build_cnn(input_shape, num_classes):
     return model
 
 # Training function with improvements
-def train_cnn_model_with_improvements(wav_folder_path, rml_folder_path, sr=22050, batch_size=32, epochs=30, n_splits=5):
+def train_cnn_model_with_improvements(wav_folder_path, rml_folder_path, sr=8000, batch_size=32, epochs=30, n_splits=5):
     all_features, all_labels = [], []
     wav_files = glob.glob(os.path.join(wav_folder_path, "*.wav"))
     rml_files = glob.glob(os.path.join(rml_folder_path, "*.rml"))
