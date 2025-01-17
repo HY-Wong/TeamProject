@@ -1,1 +1,195 @@
-/
+import os
+import json
+import torchaudio
+import numpy as np
+import torch
+from torch.utils.data import Dataset, DataLoader
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix
+from torch import nn
+import torch.nn.functional as F
+
+# Hyperparameters
+BATCH_SIZE = 32
+SAMPLE_RATE = 8000  # Sampling rate of .wav files
+WINDOW_SIZE = SAMPLE_RATE * 60  # 1-second window size
+NUM_EPOCHS = 10
+LEARNING_RATE = 0.001
+
+# Function to load .wav and annotations
+def load_json_annotations(file_path):
+    with open(file_path, "r") as f:
+        annotations = json.load(f)
+    return annotations
+
+# Dataset Class
+class MicDataset(Dataset):
+    def __init__(self, wav_dir, annotation_dir, transform=None):
+        self.wav_dir = wav_dir
+        self.annotation_dir = annotation_dir
+        self.wav_files = sorted([f for f in os.listdir(wav_dir) if f.endswith('.wav')])
+        self.annotation_files = sorted([f for f in os.listdir(annotation_dir) if f.endswith('.json')])
+        self.transform = transform
+
+    def __len__(self):
+        return len(self.wav_files)
+
+    def __getitem__(self, idx):
+        wav_path = os.path.join(self.wav_dir, self.wav_files[idx])
+        annotation_path = os.path.join(self.annotation_dir, self.annotation_files[idx])
+
+        # Load waveform
+        waveform, sample_rate = torchaudio.load(wav_path)
+
+        # Resample if necessary
+        if sample_rate != SAMPLE_RATE:
+            resampler = torchaudio.transforms.Resample(orig_freq=sample_rate, new_freq=SAMPLE_RATE)
+            waveform = resampler(waveform)
+
+        # Load annotations
+        annotations = load_json_annotations(annotation_path)
+        segments = []
+        labels = []
+
+        for entry in annotations:
+            start_idx = int(entry['start'] * SAMPLE_RATE)
+            end_idx = int(entry['end'] * SAMPLE_RATE)
+            label = entry['label']
+
+            # Extract segment and label
+            segment = waveform[:, start_idx:end_idx]
+            if segment.shape[1] < WINDOW_SIZE:
+                # Pad if segment is shorter than WINDOW_SIZE
+                segment = torch.nn.functional.pad(segment, (0, WINDOW_SIZE - segment.shape[1]))
+            elif segment.shape[1] > WINDOW_SIZE:
+                # Trim if segment is longer than WINDOW_SIZE
+                segment = segment[:, :WINDOW_SIZE]
+
+            segments.append(segment)
+            labels.append(label)
+
+        # Stack segments and labels
+        segments = torch.stack(segments)
+        labels = torch.tensor(labels, dtype=torch.long)
+
+        return segments, labels
+
+# CNN Model -> decrease the number of filters and kernal size
+class CNNModel(nn.Module):
+    def __init__(self, drop=0.3):
+        super(CNNModel, self).__init__()
+        self.layers = nn.Sequential(
+            nn.Conv1d(1, 32, kernel_size=16, padding=8),
+            nn.BatchNorm1d(32),
+            nn.ReLU(),
+            nn.MaxPool1d(kernel_size=2),
+            nn.Dropout(p=drop),
+            nn.Conv1d(32, 32, kernel_size=16, padding=8),
+            nn.BatchNorm1d(32),
+            nn.ReLU(),
+            # nn.MaxPool1d(kernel_size=2),
+            nn.Dropout(p=drop)
+        )
+
+    def forward(self, x):
+        return self.layers(x)
+
+# Transformer Model
+class TransformerModel(nn.Module):
+    def __init__(self):
+        super(TransformerModel, self).__init__()
+        self.cnn = CNNModel()
+        self.encoder_layer = nn.TransformerEncoderLayer(d_model=64, nhead=1, dim_feedforward=128, dropout=0.3)
+        self.transformer = nn.TransformerEncoder(self.encoder_layer, num_layers=2)
+        self.fc = nn.Sequential(
+            nn.Linear(64, 32),
+            nn.ReLU(),
+            nn.Linear(32, 2)
+        )
+
+    def forward(self, x):
+        x = self.cnn(x)
+        x = x.permute(2, 0, 1)  # Change shape for Transformer (seq_len, batch, feature)
+        x = self.transformer(x)
+        x = x.mean(dim=0)  # Average over sequence
+        x = self.fc(x)
+        return x
+
+# Helper functions
+def get_device():
+    return "cuda" if torch.cuda.is_available() else "cpu"
+
+def same_seeds(seed):
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+    np.random.seed(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+
+# Main Training Loop
+def train_model(model, train_loader, val_loader, criterion, optimizer, device, num_epochs):
+    best_acc = 0
+    for epoch in range(num_epochs):
+        model.train()
+        train_loss = 0
+        train_correct = 0
+        total_samples = 0
+
+        for segments, labels in train_loader:
+            segments, labels = segments.to(device), labels.to(device)
+            optimizer.zero_grad()
+            outputs = model(segments)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
+
+            train_loss += loss.item() * segments.size(0)
+            _, preds = torch.max(outputs, 1)
+            train_correct += (preds == labels).sum().item()
+            total_samples += labels.size(0)
+
+        train_acc = train_correct / total_samples
+        train_loss /= total_samples
+
+        # Validation Loop
+        model.eval()
+        val_correct = 0
+        val_samples = 0
+
+        with torch.no_grad():
+            for segments, labels in val_loader:
+                segments, labels = segments.to(device), labels.to(device)
+                outputs = model(segments)
+                _, preds = torch.max(outputs, 1)
+                val_correct += (preds == labels).sum().item()
+                val_samples += labels.size(0)
+
+        val_acc = val_correct / val_samples
+        print(f"Epoch [{epoch + 1}/{num_epochs}], Train Acc: {train_acc:.4f}, Val Acc: {val_acc:.4f}")
+
+        # Save best model
+        if val_acc > best_acc:
+            best_acc = val_acc
+            torch.save(model.state_dict(), "best_model.pth")
+            print("Model saved.")
+
+# Main Script
+if __name__ == "__main__":
+    same_seeds(42)
+    device = get_device()
+    # Load data
+    dataset = MicDataset("/Users/ybys/Desktop/TP/PSG_Audio/APNEA_EDF/test", "/Users/ybys/Desktop/TP/PSG_Audio/os_apnea/train")
+    train_size = int(0.8 * len(dataset))
+    val_size = len(dataset) - train_size
+    train_dataset, val_dataset = torch.utils.data.random_split(dataset, [train_size, val_size])
+    train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
+    val_loader = DataLoader(val_dataset, batch_size=BATCH_SIZE, shuffle=False)
+
+    # Model, Loss, Optimizer
+    model = TransformerModel().to(device)
+    criterion = nn.CrossEntropyLoss()
+    optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
+
+    # Train
+    train_model(model, train_loader, val_loader, criterion, optimizer, device, NUM_EPOCHS)
