@@ -1,0 +1,129 @@
+Epoch 1/30 - Training Loss: 0.6535, Validation Loss: 0.6403
+                     precision    recall  f1-score   support
+
+No ObstructiveApnea       0.78      0.04      0.08      3642
+   ObstructiveApnea       0.60      0.99      0.75      5304
+
+           accuracy                           0.60      8946
+          macro avg       0.69      0.52      0.41      8946
+       weighted avg       0.68      0.60      0.47      8946
+
+Model saved!
+Epoch 2/30 - Training Loss: 0.6256, Validation Loss: 0.5891
+                     precision    recall  f1-score   support
+
+No ObstructiveApnea       0.80      0.27      0.40      3642
+   ObstructiveApnea       0.66      0.95      0.78      5304
+
+           accuracy                           0.68      8946
+          macro avg       0.73      0.61      0.59      8946
+       weighted avg       0.71      0.68      0.63      8946
+
+Model saved!
+Epoch 3/30 - Training Loss: 0.6084, Validation Loss: 0.6031
+                     precision    recall  f1-score   support
+
+No ObstructiveApnea       0.70      0.48      0.57      3642
+   ObstructiveApnea       0.71      0.86      0.78      5304
+
+           accuracy                           0.71      8946
+          macro avg       0.71      0.67      0.67      8946
+       weighted avg       0.71      0.71      0.69      8946
+
+Epoch 4/30 - Training Loss: 0.5990, Validation Loss: 0.5652
+                     precision    recall  f1-score   support
+
+No ObstructiveApnea       0.73      0.47      0.57      3642
+   ObstructiveApnea       0.71      0.88      0.79      5304
+
+           accuracy                           0.71      8946
+          macro avg       0.72      0.68      0.68      8946
+       weighted avg       0.72      0.71      0.70      8946
+
+Model saved!
+Epoch 5/30 - Training Loss: 0.5792, Validation Loss: 0.5569
+                     precision    recall  f1-score   support
+
+No ObstructiveApnea       0.77      0.51      0.62      3642
+   ObstructiveApnea       0.73      0.90      0.80      5304
+
+           accuracy                           0.74      8946
+          macro avg       0.75      0.71      0.71      8946
+       weighted avg       0.75      0.74      0.73      8946
+
+Model saved!
+Epoch 6/30 - Training Loss: 0.5672, Validation Loss: 0.5555
+                     precision    recall  f1-score   support
+
+No ObstructiveApnea       0.77      0.60      0.67      3642
+   ObstructiveApnea       0.76      0.88      0.82      5304
+
+           accuracy                           0.76      8946
+          macro avg       0.77      0.74      0.74      8946
+       weighted avg       0.76      0.76      0.76      8946
+
+Model saved!
+Epoch 7/30 - Training Loss: 0.5551, Validation Loss: 0.5156
+                     precision    recall  f1-score   support
+
+No ObstructiveApnea       0.77      0.65      0.70      3642
+   ObstructiveApnea       0.78      0.86      0.82      5304
+
+           accuracy                           0.78      8946
+          macro avg       0.78      0.76      0.76      8946
+       weighted avg       0.78      0.78      0.77      8946
+
+Model saved!
+Epoch 8/30 - Training Loss: 0.5454, Validation Loss: 0.4909
+                     precision    recall  f1-score   support
+
+No ObstructiveApnea       0.81      0.60      0.69      3642
+   ObstructiveApnea       0.77      0.90      0.83      5304
+
+           accuracy                           0.78      8946
+          macro avg       0.79      0.75      0.76      8946
+       weighted avg       0.78      0.78      0.77      8946
+
+Model saved!
+Epoch 9/30 - Training Loss: 0.5293, Validation Loss: 0.4526
+                     precision    recall  f1-score   support
+
+No ObstructiveApnea       0.77      0.71      0.74      3642
+   ObstructiveApnea       0.81      0.86      0.83      5304
+
+           accuracy                           0.79      8946
+          macro avg       0.79      0.78      0.78      8946
+       weighted avg       0.79      0.79      0.79      8946
+
+Model saved!
+Epoch 10/30 - Training Loss: 0.5181, Validation Loss: 0.4908
+                     precision    recall  f1-score   support
+
+No ObstructiveApnea       0.73      0.72      0.73      3642
+   ObstructiveApnea       0.81      0.81      0.81      5304
+
+           accuracy                           0.78      8946
+          macro avg       0.77      0.77      0.77      8946
+       weighted avg       0.78      0.78      0.78      8946
+
+Epoch 11/30 - Training Loss: 0.5099, Validation Loss: 0.5125
+                     precision    recall  f1-score   support
+
+No ObstructiveApnea       0.67      0.81      0.74      3642
+   ObstructiveApnea       0.85      0.73      0.79      5304
+
+           accuracy                           0.76      8946
+          macro avg       0.76      0.77      0.76      8946
+       weighted avg       0.78      0.76      0.77      8946
+
+Epoch 12/30 - Training Loss: 0.5017, Validation Loss: 0.4810
+                     precision    recall  f1-score   support
+
+No ObstructiveApnea       0.73      0.75      0.74      3642
+   ObstructiveApnea       0.82      0.81      0.82      5304
+
+           accuracy                           0.79      8946
+          macro avg       0.78      0.78      0.78      8946
+       weighted avg       0.79      0.79      0.79      8946
+
+Early stopping triggered.
