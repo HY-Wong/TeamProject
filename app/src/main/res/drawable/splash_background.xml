@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Define a gradient that goes from one color to another -->
+    <gradient
+        android:startColor="@color/blue"
+        android:endColor="@color/white"
+        android:angle="45" />
+
+</shape>

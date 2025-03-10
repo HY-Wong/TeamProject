@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    android:background="@color/white">
+
+    <!-- App Icon -->
+    <ImageView
+        android:id="@+id/home_icon"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/ic_sleep"
+        android:contentDescription="@drawable/ic_sleep" />
+
+    <!-- Welcome Message -->
+    <TextView
+        android:id="@+id/welcome_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="Welcome to Sleep Apnea Detector"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="@color/purple_700" />
+
+    <!-- Start Recording Button -->
+    <Button
+        android:id="@+id/btn_start_recording"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Start Recording"
+        android:backgroundTint="@color/purple_500"
+        android:textColor="@color/white" />
+
+    <!-- View Recordings Button -->
+    <Button
+        android:id="@+id/btn_view_recordings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="View Recordings"
+        android:backgroundTint="@color/purple_700"
+        android:textColor="@color/white" />
+
+    <!-- View Reports Button -->
+    <Button
+        android:id="@+id/btn_view_reports"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View Reports"
+        android:backgroundTint="@color/purple_700"
+        android:textColor="@color/white" />
+
+</LinearLayout>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="16dp">
+
+    <!-- Animated Growing Circle -->
+    <ImageView
+        android:id="@+id/circle_animation"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@drawable/circle_shape"
+        android:layout_centerInParent="true" />
+
+    <!-- Microphone Icon -->
+    <ImageView
+        android:id="@+id/microphone_icon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_microphone"
+        android:layout_centerInParent="true" />
+
+    <!-- Timer -->
+    <TextView
+        android:id="@+id/recordingTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:textSize="36sp"
+        android:textColor="@color/black"
+        android:layout_below="@id/microphone_icon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
+    <!-- Stop Recording Button -->
+    <Button
+        android:id="@+id/btnStopRecording"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Stop Recording"
+        android:backgroundTint="@color/blue"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="80dp"
+        android:layout_marginHorizontal="20dp" />
+
+    <!-- Upload Recording Button -->
+    <Button
+        android:id="@+id/btn_upload_recording"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Upload Recording"
+        android:backgroundTint="@color/blue"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_above="@id/btnStopRecording"
+        android:layout_marginBottom="16dp"
+        android:layout_marginHorizontal="20dp" />
+
+    <!-- Submit Button -->
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit Recording"
+        android:backgroundTint="@color/blue"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="20dp"
+        android:visibility="gone" />
+
+</RelativeLayout>
