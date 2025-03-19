@@ -53,10 +53,10 @@ The following models are implemented:
 
 `test.py` evaluates the model using a sliding window approach on an unseen recording from the PSG-Audio dataset. The prediction results are shown below:
 
-![Test Results](../images/test_result.png)
+![Test Results](./images/test_result.png)
 
 ### Application
 
 The mobile application is developed using Android Studio with Kotlin as the primary programming language. The UI is built using traditional XML layout files. The application source code is located in the `app_code/` directory.
 
-![App UI](../images/app.png)
+![App UI](./images/app.png)
