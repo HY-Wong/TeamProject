@@ -59,4 +59,4 @@ The following models are implemented:
 
 The mobile application is developed using Android Studio with Kotlin as the primary programming language. The UI is built using traditional XML layout files. The application source code is located in the `app_code/` directory.
 
-![App UI](./images/app.png)
+<img src="./images/app.png" alt="App UI" width="300">
