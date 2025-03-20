@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+torch
+torchaudio
+tqdm
+scikit-learn
+numpy
+pandas
+python-multipart
+SoundFile
